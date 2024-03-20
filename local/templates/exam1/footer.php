@@ -180,7 +180,14 @@
             <div class="title-block"><?=GetMessage('CONTACT_INFO')?></div>
             <div class="loc-block">
                 <div class="address">ул. Летняя, стр.12, офис 512</div>
-                <div class="phone"><a href="tel:84952128506">8 (495) 212-85-06</a>
+                <?$APPLICATION->IncludeComponent("bitrix:main.include","",Array(
+                        "AREA_FILE_SHOW" => "file",
+                        "AREA_FILE_SUFFIX" => "inc",
+                        "AREA_FILE_RECURSIVE" => "Y",
+                        "EDIT_TEMPLATE" => "standard.php",
+                        'PATH' => SITE_DIR . 'include/footer_phone.php'
+                    )
+                );?>
                 </div>
             </div>
             <div class="main-soc-block">

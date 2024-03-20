@@ -14,6 +14,12 @@
     $previousLevel = 0;
     foreach($arResult as $arItem):?>
 
+    <?
+    $classStyle = '';
+    if(!empty($arItem['PARAMS']['CLASS_STYLE'])) {
+        $classStyle = $arItem['PARAMS']['CLASS_STYLE'];
+    } ?>
+
 	<?if ($previousLevel && $arItem["DEPTH_LEVEL"] < $previousLevel):?>
 		<?=str_repeat("</ul></li>", ($previousLevel - $arItem["DEPTH_LEVEL"]));?>
 	<?endif?>
@@ -22,12 +28,12 @@
 
 		<?if ($arItem["DEPTH_LEVEL"] == 1):?>
 			<li>
-                <a href="<?=$arItem["LINK"]?>" class="<?if ($arItem["SELECTED"]):?>root-item-selected<?else:?>root-item<?endif?>"><?=$arItem["TEXT"]?></a>
+                <a href="<?=$arItem["LINK"]?>" class="<?=$classStyle?> <?if ($arItem["SELECTED"]):?>root-item-selected<?else:?>root-item<?endif?>"><?=$arItem["TEXT"]?></a>
 				<ul>
 
 		<?else:?>
 			<li<?if ($arItem["SELECTED"]):?> class="item-selected"<?endif?>>
-                <a href="<?=$arItem["LINK"]?>" class="parent"><?=$arItem["TEXT"]?></a>
+                <a href="<?=$arItem["LINK"]?>" class="<?=$classStyle?> parent"><?=$arItem["TEXT"]?></a>
 				<ul>
 
 		<?endif?>
@@ -39,7 +45,7 @@
 		<?if ($arItem["PERMISSION"] > "D"):?>
 
 			<?if ($arItem["DEPTH_LEVEL"] == 1):?>
-				<li><a href="<?=$arItem["LINK"]?>" class="<?if ($arItem["SELECTED"]):?>root-item-selected<?else:?>root-item<?endif?>"><?=$arItem["TEXT"]?></a></li>
+				<li><a href="<?=$arItem["LINK"]?>" class="<?=$classStyle?> <?if ($arItem["SELECTED"]):?>root-item-selected<?else:?>root-item<?endif?>"><?=$arItem["TEXT"]?></a></li>
 			<?else:?>
 				<li<?if ($arItem["SELECTED"]):?> class="item-selected"<?endif?>><a href="<?=$arItem["LINK"]?>"><?=$arItem["TEXT"]?></a></li>
 			<?endif?>
@@ -47,7 +53,7 @@
 		<?else:?>
 
 			<?if ($arItem["DEPTH_LEVEL"] == 1):?>
-				<li><a href="" class="<?if ($arItem["SELECTED"]):?>root-item-selected<?else:?>root-item<?endif?>" title="<?=GetMessage("MENU_ITEM_ACCESS_DENIED")?>"><?=$arItem["TEXT"]?></a></li>
+				<li><a href="" class="<?=$classStyle?> <?if ($arItem["SELECTED"]):?>root-item-selected<?else:?>root-item<?endif?>" title="<?=GetMessage("MENU_ITEM_ACCESS_DENIED")?>"><?=$arItem["TEXT"]?></a></li>
 			<?else:?>
 				<li><a href="" class="denied" title="<?=GetMessage("MENU_ITEM_ACCESS_DENIED")?>"><?=$arItem["TEXT"]?></a></li>
 			<?endif?>

@@ -4,21 +4,23 @@ $aMenuLinks = Array(
 		"Компания", 
 		"company/", 
 		Array(), 
-		Array("EXTRA_TEXT"=>"это текст для пункта \"Компания\""), 
+		Array("EXTRA_TEXT"=>"это текст для пункта \"Компания\"",
+            "CLASS_STYLE" => "color-red"
+        ),
 		"" 
 	),
 	Array(
 		"Новости", 
 		"news/", 
-		Array(), 
-		Array(), 
+		Array(),
+        Array("CLASS_STYLE" => "color-yellow"),
 		"" 
 	),
 	Array(
 		"Продукция", 
 		"products/", 
 		Array(), 
-		Array("EXTRA_TEXT"=>"это текст для пункта \"Продукция\""), 
+		Array("CLASS_STYLE" => "color-green"),
 		"" 
 	),
 	Array(

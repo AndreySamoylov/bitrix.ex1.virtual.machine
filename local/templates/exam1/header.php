@@ -13,17 +13,18 @@ else
     <html lang="<?=LANGUAGE_ID?>">
 
     <head>
-        <?Asset::getInstance()->addJs(SITE_TEMPLATE_PATH . "/js/fix.js");?>
-        <link rel="stylesheet" href="<?=SITE_TEMPLATE_PATH?>/css/reset.css" />
-        <link rel="stylesheet" href="<?=SITE_TEMPLATE_PATH?>/css/style.css" />
-        <link rel="stylesheet" href="<?=SITE_TEMPLATE_PATH?>/css/owl.carousel.css" />
-        <script src="<?=SITE_TEMPLATE_PATH?>/js/jquery.min.js"></script>
+
+        <?Asset::getInstance()->addCSS(SITE_TEMPLATE_PATH . "/css/reset.css");?>
+        <?Asset::getInstance()->addCSS(SITE_TEMPLATE_PATH . "/css/style.css");?>
+        <?Asset::getInstance()->addCSS(SITE_TEMPLATE_PATH . "/css/owl.carousel.");?>
+        <?Asset::getInstance()->addJs(SITE_TEMPLATE_PATH . "/js/jquery.min.js");?>
+<!--        --><?//Asset::getInstance()->addJs(SITE_TEMPLATE_PATH . "/js/owl.carousel.min.js", false);?>
         <script src="<?=SITE_TEMPLATE_PATH?>/js/owl.carousel.min.js"></script>
-        <script src="<?=SITE_TEMPLATE_PATH?>/js/scripts.js"></script>
+        <?Asset::getInstance()->addJs(SITE_TEMPLATE_PATH . "/js/scripts.js");?>
         <link rel="icon" type="/image/vnd.microsoft.icon" href="<?=SITE_TEMPLATE_PATH?>/img/favicon.ico">
         <link rel="shortcut icon" href="<?=SITE_TEMPLATE_PATH?>/img/favicon.ico">
-        <?$APPLICATION->ShowHead();?>
         <title><?$APPLICATION->ShowTitle()?></title>
+        <?$APPLICATION->ShowHead();?>
     </head>
 
 <body>
@@ -156,13 +157,15 @@ else
     <!-- /nav -->
     <!-- breadcrumbs -->
     <? if(!CSite::InDir(SITE_DIR . 'index.php')) { ?>
-        <div class="breadcrumbs-box">
-            <div class="inner-wrap">
-                <a href="">Главная</a>
-                <a href="">Мебель</a>
-                <span>Выставки и события</span>
-            </div>
-        </div>
+        <?$APPLICATION->IncludeComponent(
+            "bitrix:breadcrumb",
+            "exam1",
+            Array(
+                "PATH" => "",
+                "SITE_ID" => "s1",
+                "START_FROM" => "0"
+            )
+        );?>
     <? } ?>
     <!-- /breadcrumbs -->
     <!-- page -->
